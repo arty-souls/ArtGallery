@@ -1,61 +1,72 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />  
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ArtGallery</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <header>
-       
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 navbar-fixed-top" style="background-color: #000000;">
-            
-            <div class="container">
-              
+    <header>   
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 navbar-fixed-top" style="background-color: #000000;">          
+            <div class="container">            
                     <a class="navbar-brand nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">ArtGallery</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation" style="font-size: 0.8rem;">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
+                    <div class="navbar-collapse  collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1" style="padding-left: 20px; padding-right: 20px;">
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"style="padding-left: 20px; padding-right: 35px;">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Shop">Shop</a>
-                            </li>
-                  
-                            <li class="nav-item dropdown nav-item">                                                                  
-                                        <a class="nav-link text-light dropdown-toggle" id="dropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="Home" asp-action="Artist" >
-                                            Artists
-                                        </a>                                      
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" asp-controller="Home" asp-action="ContactUs">Artist1</a>
-                                            <a class="dropdown-item" asp-controller="Home" asp-action="ContactUs">Artist2</a>
-                                            <a class="dropdown-item" asp-controller="Home" asp-action="ContactUs">Artist3</a>
-                                        </div>
-                             
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Shop" style="padding-right: 35px;">Shop</a>
                             </li>
 
-                            <li class="nav-item dropdown">
-                             
-                                    <a class="nav-link text-light  dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="Home" asp-action="Collection">Collections</a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" asp-controller="Home" asp-action="Contact">Collection 1</a>
-                                        <a class="dropdown-item" asp-controller="Home" asp-action="Contact">Collection 2</a>
-                                    </div>
-                                
+                            <li class="nav-item dropdown nav-item" style="padding-right: 35px;">
+                                <a class="nav-link text-light dropdown-toggle " id="dropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="Home" asp-action="Artist">
+                                    Artists
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="ContactUs">Artist1</a>
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="ContactUs">Artist2</a>
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="ContactUs">Artist3</a>
+                                </div>
+
                             </li>
-                            <li class="nav-item">
+
+                            <li class="nav-item dropdown" style="padding-right: 35px;">
+
+                                <a class="nav-link text-light  dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="Home" asp-action="Collection">Collections</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="Contact">Collection 1</a>
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="Contact">Collection 2</a>
+                                </div>
+
+                            </li>
+                            <li class="nav-item" style="padding-right: 35px;">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="ContactUs">Contact Us</a>
                             </li>
-                          
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="SignIn">Account</a>
+
+                            <li class="nav-item" style="padding-left : 70px; padding-right: 10px;">
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                                </form>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="SignIn"> <i class="material-icons"><span class="material-icons-outlined"> shopping_cart</span></i></a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="SignIn"> <i class="material-icons">account_circle</i></a>
+                            </li>
+
+
+
                         </ul>
                     </div>
              </div>
