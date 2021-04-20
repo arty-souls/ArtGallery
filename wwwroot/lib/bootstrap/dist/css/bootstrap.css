@@ -556,9 +556,10 @@ pre code {
 }
 
 @media (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
+    .container {
+        max-width: 540px;
+       
+    }
 }
 
 @media (min-width: 768px) {
@@ -568,9 +569,10 @@ pre code {
 }
 
 @media (min-width: 992px) {
-  .container {
-    max-width: 960px;
-  }
+    .container {
+        max-width: 960px;
+        
+    }
 }
 
 @media (min-width: 1200px) {
@@ -4221,7 +4223,7 @@ input[type="button"].btn-block {
 }
 
 .navbar-toggler {
-  padding: 0.25rem 0.75rem;
+
   font-size: 1.25rem;
   line-height: 1;
   background-color: transparent;
@@ -4328,11 +4330,12 @@ input[type="button"].btn-block {
 }
 
 @media (max-width: 991.98px) {
-  .navbar-expand-lg > .container,
-  .navbar-expand-lg > .container-fluid {
-    padding-right: 0;
-    padding-left: 0;
-  }
+    .navbar-expand-lg > .container,
+    .navbar-expand-lg > .container-fluid {
+        padding-right: 0;
+        padding-left: 0;
+        font-size: 1.2vw;
+    }
 }
 
 @media (min-width: 992px) {
@@ -4383,6 +4386,7 @@ input[type="button"].btn-block {
     flex-flow: row nowrap;
     -ms-flex-pack: start;
     justify-content: flex-start;
+
   }
   .navbar-expand-xl .navbar-nav {
     -ms-flex-direction: row;
@@ -5940,6 +5944,7 @@ a.close.disabled {
 @media (min-width: 1200px) {
   .modal-xl {
     max-width: 1140px;
+
   }
 }
 
