@@ -48,6 +48,11 @@ namespace ArtGallery.Controllers
             return View();
         }
 
+        public IActionResult Events()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
