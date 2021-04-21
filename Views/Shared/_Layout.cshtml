@@ -22,12 +22,12 @@
                             aria-expanded="false" aria-label="Toggle navigation" style="padding: 0rem;border:none;">
                         <span class="navbar-toggler-icon" style="font-size:15px;"></span>
                     </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between show" >
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between show">
                         <ul class="navbar-nav flex-grow-1 " style=" font-family:Raleway; font-weight:500;padding-top:3px;font-size:1.4vw;">
                             <li class="nav-item " style="padding-right:1%;">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"><i class="material-icons" style="font-size:2.5vw;">home</i></a>
                             </li>
-                            
+
                             <li class="nav-item" style="padding-right:1%;">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Shop">Shop</a>
                             </li>
@@ -80,18 +80,18 @@
 
 
     <div class="container" style="margin-top:30px;">
-         
-        <main role="main" >
+
+        <main role="main">
             @RenderBody()
         </main>
     </div>
 
     <!-- Footer------------------------------------------------------------------------------------------------- -->
-   
-    <footer class="page-footer font-small  stylish-color-dark pt-4 "  style="background-color: #000000">
+
+    <footer class="page-footer font-small stylish-color-dark pt-4 " style="background-color: #000000">
 
         <!-- Footer Links -->
-        <div class="container text-center text-md-left">
+        <div class="container text-center text-md-left ">
 
             <!-- Grid row -->
             <div class="row">
@@ -167,14 +167,56 @@
                 <!-- Grid column -->
                 <div class="col-md-2 mx-auto">
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - ArtGallery - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-        <!-- Copyright -->
+                    <!-- Links -->
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4" style="color:white">Links</h5>
 
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 4</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+        </div>
+        <!-- Footer Links -->
+
+        <hr>
+
+        <!-- Call to action -->
+        <ul class="list-unstyled list-inline text-center py-2">
+            <li class="list-inline-item">
+                <h5 class="mb-1" style="color:white">Register for free</h5>
+            </li>
+            <li class="list-inline-item">
+                <a href="#!" class="btn btn-danger btn-rounded">Sign up!</a>
+            </li>
+        </ul>
+        <!-- Call to action -->
+
+        <hr>
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3" style="color:white">
+            © 2021 Copyright:
+            <a href="https://mdbootstrap.com/">Art Gallery</a>
+        </div>
     </footer>
- 
+
+    <!-- Footer -->
     <!-- Footer -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
