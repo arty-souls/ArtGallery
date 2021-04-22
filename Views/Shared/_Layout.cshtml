@@ -12,20 +12,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
  
 </head>
-<body>
-    <header>
-        <div class="fixed-top">
-            <nav class="navbar py-0 navbar-expand-sm navbar-toggleable navbar-light " style="background-color: #000000;">
-                <div class="container" style="padding-left:0%;">
-                    <a class="navbar-brand nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/Images/Logo/logo.png" style="height:4vw; width:4vw;"></a>
-                    <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation" style="padding: 0rem;border:none;">
-                        <span class="navbar-toggler-icon" style="font-size:15px;"></span>
+<body style="margin-bottom:0px;">
+    <header style="background-color: #000000;">
+            <nav class="navbar navbar-expand-md navbar-toggleable navbar-light " >
+                <div class="container">
+                    <a class="navbar-brand nav-link text-light"style="margin-right:0px;" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/Images/Logo/logo.png" style="height:50px; width:50px;"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation" style="border:none;">
+                        <i class="material-icons" style="color:white;font-size:40px;">menu</i>
                     </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between show">
-                        <ul class="navbar-nav flex-grow-1 " style=" font-family:Raleway; font-weight:500;padding-top:3px;font-size:1.4vw;">
+                    <div class="navbar-collapse collapse d-md-inline-flex justify-content-between show">
+                        <ul class="navbar-nav flex-grow-1 " style=" font-family:Raleway; font-weight:500;padding-top:3px;padding-left:15px;">
                             <li class="nav-item " style="padding-right:1%;">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"><i class="material-icons" style="font-size:2vw;">home</i></a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
 
                             <li class="nav-item" style="padding-right:1%;">
@@ -54,32 +53,31 @@
 
                             </li>
                             <li class="nav-item mr-auto">
-                                <a class="nav-link text-light" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="Home" asp-action="ContactUs">Contact Us</a>
+                                <a class="nav-link text-light" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="Home" asp-action="ContactUs">Contact</a>
                             </li>
 
                             <li class="nav-item">
-                                <form class="form-inline" style="max-width:40%; padding-top:0.4vw;">
-                                    <input class="form-control rounded-pill border-0 " type="text" placeholder="Search" aria-label="Search" style="font-size:1vw;">
+                                <form class="form-inline" style="max-width:60%;">
+                                    <input class="form-control rounded-pill border-0" type="text" placeholder="Search" aria-label="Search" style="height:35px;width:160px;">
                                 </form>
                             </li>
 
                             <li class="nav-item ">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="SignIn"> <i class="material-icons" style="font-size:2vw;"> shopping_cart</i></a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="SignIn"> <i class="material-icons"> shopping_cart</i></a>
                             </li>
 
                             <li class="nav-item ">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="SignIn"> <i class="material-icons" style="font-size:2vw;">account_circle</i> </a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="SignIn"> <i class="material-icons" >account_circle</i> </a>
                             </li>
                         </ul>
                     </div>
                 </div>
 
             </nav>
-        </div>
+      
     </header>
 
-
-    <div class="container" style="margin-top:4.6vw;">
+    <div class="container ">
 
         <main role="main">
             @RenderBody()
@@ -88,7 +86,7 @@
 
     <!-- Footer------------------------------------------------------------------------------------------------- -->
 
-    <footer class="page-footer font-small stylish-color-dark pt-4 " style="background-color: #000000">
+    <footer class="page-footer font-small stylish-color-dark" style="background-color: #000000">
 
         <!-- Footer Links -->
         <div class="container text-center text-md-left ">
