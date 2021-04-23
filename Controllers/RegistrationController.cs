@@ -27,7 +27,7 @@ namespace ArtGallery.Controllers
 
             _auc.Add(uc);
             _auc.SaveChanges();
-            ViewBag.message = "Hi " + uc.Username + " ,Your message is received we will revert back soon ! ";
+            ViewBag.message = "Hi " + uc.Username + ",Your message is received we will revert back soon ! ";
             return View();
         }
         public IActionResult Index()
