@@ -12,7 +12,7 @@ namespace ArtGallery.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-   
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -34,6 +34,11 @@ namespace ArtGallery.Controllers
         }
 
         public IActionResult Collection()
+        {
+            return View();
+        }
+
+        public IActionResult ContactUs()
         {
             return View();
         }
