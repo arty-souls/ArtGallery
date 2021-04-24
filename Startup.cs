@@ -25,6 +25,7 @@ namespace ArtGallery
         {
 
             services.AddDbContext<Models.UserContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Myconnection")));
+            services.AddDbContext<Models.ArtistContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Myconnection")));
             services.AddControllersWithViews();
         }
 

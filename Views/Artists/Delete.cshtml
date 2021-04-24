@@ -1,0 +1,59 @@
+﻿@model ArtGallery.Models.Artist
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Artist</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ArtistName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ArtistName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ArtistDesc)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ArtistDesc)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ArtistCity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ArtistCity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ArtistIg)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ArtistIg)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ArtistPicture)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@("~/images/Artist/"+Model.ImageName)" asp-append-version="true" />
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ArtistArtwork)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@("~/Images/Artist"+Model.ArtistArtwork)" asp-append-version="true" />
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ArtistId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
+

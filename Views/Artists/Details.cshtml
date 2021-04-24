@@ -1,0 +1,54 @@
+﻿@model ArtGallery.Models.Artist
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Artist</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ArtistName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ArtistName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ArtistDesc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ArtistDesc)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ArtistCity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ArtistCity)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ArtistIg)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ArtistIg)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImageName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImageName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ArtworkName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ArtworkName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ArtistId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
