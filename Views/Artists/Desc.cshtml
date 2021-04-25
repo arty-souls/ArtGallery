@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ArtGallery.Models.Artist>
+
+@{
+    ViewData["Title"] = "Desc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h4 class="text-md-center" style="color:black;font-family:'Playfair Display';font-weight:600;font-size:40px">Our Artists</h4>
+    <hr style="height:2px;background-color:black;border-radius:100px;margin-top:0.5vw;">
+    <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ArtistName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ArtistDesc)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ArtistCity)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ArtistIg)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ImageName)
+                    </th>                  
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ArtistName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ArtistDesc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ArtistCity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ArtistIg)
+                        </td>
+                        <td>
+                            <img src="~/images/Artist/@item.ImageName" style="height:100px;width:100px;" asp-append-version="true" />
+                        </td>                     
+                    </tr>
+                }
+            </tbody>
+        </table>
+       
+</div>
+<div>
+ 
+    <a asp-action="Index">Back to List</a>
+</div>

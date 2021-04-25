@@ -49,6 +49,12 @@ namespace ArtGallery.Controllers
             return View(artist);
         }
 
+        // GET: Artists/Desc
+      public  async Task<IActionResult> Desc()
+        {
+            return View(await _context.Artist.ToListAsync());
+        }
+
         // GET: Artists/Create
         public IActionResult Create()
         {
