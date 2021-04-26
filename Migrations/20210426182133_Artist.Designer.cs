@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtGallery.Migrations
 {
     [DbContext(typeof(ArtistContext))]
-    [Migration("20210424132103_Artist")]
+    [Migration("20210426182133_Artist")]
     partial class Artist
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

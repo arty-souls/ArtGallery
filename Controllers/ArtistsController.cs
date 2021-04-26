@@ -18,7 +18,7 @@ namespace ArtGallery.Controllers
 
         private readonly ArtistContext _context;
 
-        public ArtistsController(ArtistContext context,IWebHostEnvironment hostEnvironment)
+        public ArtistsController(ArtistContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
             this._hostEnvironment = hostEnvironment;
@@ -30,6 +30,7 @@ namespace ArtGallery.Controllers
         {
             return View(await _context.Artist.ToListAsync());
         }
+
 
         // GET: Artists/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -49,11 +50,6 @@ namespace ArtGallery.Controllers
             return View(artist);
         }
 
-        // GET: Artists/Desc
-      public  async Task<IActionResult> Desc()
-        {
-            return View(await _context.Artist.ToListAsync());
-        }
 
         // GET: Artists/Create
         public IActionResult Create()
@@ -64,6 +60,8 @@ namespace ArtGallery.Controllers
         // POST: Artists/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ArtistId,ArtistName,ArtistDesc,ArtistCity,ArtistIg,ArtistPicture")] Artist artist)
@@ -74,7 +72,7 @@ namespace ArtGallery.Controllers
                 string wwwRootPath = _hostEnvironment.WebRootPath;
                 string fileName = Path.GetFileNameWithoutExtension(artist.ArtistPicture.FileName);
                 string extension = Path.GetExtension(artist.ArtistPicture.FileName);
-               artist.ImageName= fileName = fileName + extension;
+                artist.ImageName = fileName = fileName + extension;
                 string path = Path.Combine(wwwRootPath + "/Images/Artist/", fileName);
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
@@ -110,7 +108,7 @@ namespace ArtGallery.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ArtistId,ArtistName,ArtistDesc,ArtistCity,ArtistIg,ImageName,ArtworkName")] Artist artist)
+        public async Task<IActionResult> Edit(int id, [Bind("ArtistId,ArtistName,ArtistDesc,ArtistCity,ArtistIg")] Artist artist)
         {
             if (id != artist.ArtistId)
             {
@@ -119,27 +117,21 @@ namespace ArtGallery.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(artist);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ArtistExists(artist.ArtistId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+
+                _context.Update(artist);
+                await _context.SaveChangesAsync();
+
+
                 return RedirectToAction(nameof(Index));
             }
             return View(artist);
         }
 
+        // GET: Artists/Desc
+        public async Task<IActionResult> Desc()
+        {
+            return View(await _context.Artist.ToListAsync());
+        }
         // GET: Artists/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
