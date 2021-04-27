@@ -118,6 +118,8 @@ namespace ArtGallery.Controllers
             if (ModelState.IsValid)
             {
 
+               
+
                 _context.Update(artist);
                 await _context.SaveChangesAsync();
 
