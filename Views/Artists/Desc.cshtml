@@ -25,9 +25,11 @@
                         <h5 class="card-title text-md-center" style="font-weight:900;"> @Html.DisplayFor(modelItem => item.ArtistName) , @Html.DisplayFor(modelItem => item.ArtistCity)</h5>
 
                         <p class="card-text" style="font-weight:700;"> @Html.DisplayFor(modelItem => item.ArtistDesc)</p>
-                        <a href=@Html.DisplayFor(modelItem => item.ArtistIg) class="btn">Follow</a>
+                        <div class="text-center">
+                            <a href="@Html.DisplayFor(modelItem => item.ArtistIg)" class="btn" style="background-color:black;border-radius:100px;width:140px;height:40px;color:white;font-weight:600;letter-spacing:1px;"><i class="fa fa-instagram fa-lg" style="color:white;padding-top:8px;padding-right:2px;"></i>  Follow</a>
+                        </div>
+                        </div>
                     </div>
-                </div>
             </div>
 
         }
@@ -35,7 +37,7 @@
 </div>
 <div>
 
-    <a asp-action="Index">Back to List</a>
+    
 </div>
 
 
