@@ -28,6 +28,10 @@ namespace ArtGallery.Controllers
             return View();
         }
 
+        public IActionResult Gallery()
+        {
+            return View();
+        }
         public IActionResult Artist()
         {
             return View();
