@@ -9,12 +9,15 @@ using ArtGallery.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 
+
 namespace ArtGallery.Controllers
-{
+{ 
+   
     public class ArtistsController : Controller
     {
         private IWebHostEnvironment _hostEnvironment;
 
+      
 
         private readonly ArtistContext _context;
 
