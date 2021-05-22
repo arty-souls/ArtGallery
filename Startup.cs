@@ -27,6 +27,7 @@ namespace ArtGallery
             services.AddDbContext<Models.UserContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Myconnection")));
             services.AddDbContext<Models.ArtistContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Myconnection")));
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +45,7 @@ namespace ArtGallery
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -51,6 +53,7 @@ namespace ArtGallery
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                    endpoints.MapRazorPages();
             });
         }
     }
