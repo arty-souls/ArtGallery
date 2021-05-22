@@ -82,7 +82,6 @@ namespace ArtGallery.Controllers
                     await artist.ArtistPicture.CopyToAsync(fileStream);
                 }
 
-
                 _context.Add(artist);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
