@@ -109,9 +109,10 @@ namespace ArtGallery.Controllers
         // POST: Artists/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ArtistId,ArtistName,ArtistDesc,ArtistCity,ArtistIg")] Artist artist)
+        public async Task<IActionResult> Edit(int id, [Bind("ArtistId,ArtistName,ArtistDesc,ArtistCity,ArtistIg,ArtistPicture")] Artist artist)
         {
             if (id != artist.ArtistId)
             {
@@ -120,17 +121,59 @@ namespace ArtGallery.Controllers
 
             if (ModelState.IsValid)
             {
-
-               
-
+                             
                 _context.Update(artist);
-                await _context.SaveChangesAsync();
 
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
             return View(artist);
         }
+        */
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Artist model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                if (model.ArtistPicture != null)
+                { string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(model.ArtistPicture.FileName);
+                string extension = Path.GetExtension(model.ArtistPicture.FileName);
+                model.ImageName = fileName = fileName + extension;
+                string path = Path.Combine(wwwRootPath + "/Images/Artist/", fileName);
+
+
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+
+                }
+
+
+
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await model.ArtistPicture.CopyToAsync(fileStream);
+                }
+
+            }
+
+                
+                _context.Update(model);
+
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("index");
+            }
+
+            return View(model);
+        }
+
+   
 
         // GET: Artists/Desc
         public async Task<IActionResult> Desc()
@@ -168,6 +211,7 @@ namespace ArtGallery.Controllers
                 System.IO.File.Delete(imagePath);
 
             _context.Artist.Remove(artist);
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
