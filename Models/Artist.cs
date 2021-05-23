@@ -41,7 +41,7 @@ namespace ArtGallery.Models
 
         [Column(TypeName = "varbinary(max)")]
         [NotMapped]
-        [Required(ErrorMessage = "Please choose Artist Image")]
+       
         public IFormFile ArtistPicture { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]
