@@ -130,7 +130,6 @@ namespace ArtGallery.Controllers
             return View(artist);
         }
         */
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Artist model)
@@ -164,8 +163,12 @@ namespace ArtGallery.Controllers
                 artist.ImageName = model.ImageName;
 
 
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await model.ArtistPicture.CopyToAsync(fileStream);
+                }
+
             }
-           
 
             artist.ArtistName = model.ArtistName;
             artist.ArtistCity = model.ArtistCity;
@@ -178,8 +181,6 @@ namespace ArtGallery.Controllers
                 return RedirectToAction("index");
             
         }
-
-   
 
         // GET: Artists/Desc
         public async Task<IActionResult> Desc()
