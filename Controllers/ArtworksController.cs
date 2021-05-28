@@ -136,42 +136,51 @@ namespace ArtGallery.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Artwork model)
         {
-
-            if (ModelState.IsValid)
+            if (id != model.ArtworkId)
             {
-                if (model.ArtworkPicture != null)
+                return NotFound();
+            }
+            string wwwRootPath = _hostEnvironment.WebRootPath;
+            var files = HttpContext.Request.Form.Files;
+
+            var artwork = await _context.Artworks.FindAsync(model.ArtworkId);
+
+
+            if (files.Count > 0)
+            {
+
+                var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/Artwork", artwork.ImageName);
+                if (System.IO.File.Exists(imagePath))
+                    System.IO.File.Delete(imagePath);
+
+                string fileName = Path.GetFileNameWithoutExtension(model.ArtworkPicture.FileName);
+                string extension = Path.GetExtension(model.ArtworkPicture.FileName);
+                model.ImageName = fileName = fileName + extension;
+                string path = Path.Combine(wwwRootPath + "/Images/Artist/", fileName);
+
+                using (var fileStream = new FileStream(path, FileMode.Create))
                 {
-                    string wwwRootPath = _hostEnvironment.WebRootPath;
-                    string fileName = Path.GetFileNameWithoutExtension(model.ArtworkPicture.FileName);
-                    string extension = Path.GetExtension(model.ArtworkPicture.FileName);
-                    model.ImageName = fileName = fileName + extension;
-                    string path = Path.Combine(wwwRootPath + "/Images/Artist/", fileName);
-
-
-                    if (System.IO.File.Exists(path))
-                    {
-                        System.IO.File.Delete(path);
-
-                    }
-
-
-
-                    using (var fileStream = new FileStream(path, FileMode.Create))
-                    {
-                        await model.ArtworkPicture.CopyToAsync(fileStream);
-                    }
-
+                    files[0].CopyTo(fileStream);
                 }
+                artwork.ImageName = model.ImageName;
 
-
-                _context.Update(model);
-
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction("index");
             }
 
-            return View(model);
+
+            artwork.ArtworkName = model.ArtworkName;
+            artwork.ArtworkDesc = model.ArtworkDesc;
+            artwork.ArtistName = model.ArtistName;
+            artwork.ArtistIg = model.ArtistIg;
+            artwork.Reference = model.Reference;
+            artwork.Collection = model.Collection;
+            artwork.Price = model.Price;
+          
+
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("index");
+
         }
 
 

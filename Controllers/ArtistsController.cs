@@ -130,49 +130,53 @@ namespace ArtGallery.Controllers
             return View(artist);
         }
         */
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Artist model)
         {
-
-            if (ModelState.IsValid)
+            if (id != model.ArtistId)
             {
-                if (model.ArtistPicture != null)
-                { string wwwRootPath = _hostEnvironment.WebRootPath;
+                return NotFound();
+            }
+            string wwwRootPath = _hostEnvironment.WebRootPath;
+            var files = HttpContext.Request.Form.Files;
+
+            var artist = await _context.Artist.FindAsync(model.ArtistId);
+
+
+            if (files.Count > 0)
+            {
+
+                var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/Artist", artist.ImageName);
+                if (System.IO.File.Exists(imagePath))
+                    System.IO.File.Delete(imagePath);
+
                 string fileName = Path.GetFileNameWithoutExtension(model.ArtistPicture.FileName);
                 string extension = Path.GetExtension(model.ArtistPicture.FileName);
                 model.ImageName = fileName = fileName + extension;
                 string path = Path.Combine(wwwRootPath + "/Images/Artist/", fileName);
 
-
-                if (System.IO.File.Exists(path))
-                {
-                    System.IO.File.Delete(path);
-
-                }
-
-
-
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
-                    await model.ArtistPicture.CopyToAsync(fileStream);
+                    files[0].CopyTo(fileStream);
                 }
+                artist.ImageName = model.ImageName;
+
 
             }
 
-                
-                _context.Update(model);
 
-                await _context.SaveChangesAsync();
+            artist.ArtistName = model.ArtistName;
+            artist.ArtistCity = model.ArtistCity;
+            artist.ArtistDesc = model.ArtistDesc;
+            artist.ArtistIg = model.ArtistIg;
 
-                return RedirectToAction("index");
-            }
 
-            return View(model);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("index");
+
         }
-
-   
 
         // GET: Artists/Desc
         public async Task<IActionResult> Desc()
