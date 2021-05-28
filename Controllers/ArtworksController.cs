@@ -218,9 +218,20 @@ namespace ArtGallery.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> Desc()
+        public async Task<IActionResult> Desc(string searchString)
         {
-            return View(await _context.Artworks.ToListAsync());
+            var artwork = from a in _context.Artworks
+                         select a;
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                artwork = artwork.Where(s => s.ArtworkName.Contains(searchString));
+            }
+
+            return View(await artwork.ToListAsync());
+
+
         }
         private bool ArtworkExists(int id)
         {

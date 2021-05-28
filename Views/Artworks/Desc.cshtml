@@ -5,33 +5,40 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
+
     <br>
     <br>
     <h4 class="text-md-center" style="color:black;font-family:'Playfair Display';font-weight:600;font-size:40px">Our Artworks</h4>
     <hr style="height:2px;background-color:black;border-radius:100px;margin-top:0.5vw;">
     <br />
-    <div class="row " style="font-family:Raleway;">
-        @foreach (var item in Model)
-        {
+    <form asp-controller="Artworks" asp-action="Desc" method="get">
+        <p>
+            Name: <input type="text" name="SearchString" />
+            <input type="submit" value="Filter" />
+        </p>
+        </form>
+        <div class="row " style="font-family:Raleway;">
+            @foreach (var item in Model)
+            {
 
-            <div class="col-md-4 ">
-                <div class="card shadow-lg p-3 mb-5 bg-white" style="border:none;">
-                    <div class="text-center">
-                        <img class="card-img-top" src="~/images/Artwork/@item.ImageName"  asp-append-version="true" />
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-md-center" style="font-weight:bolder;"> @Html.DisplayFor(modelItem => item.ArtworkName)</h5>
-
-                        <p class="card-text text-md-center" style="font-weight:bolder;"> Rs. @Html.DisplayFor(modelItem => item.Price)</p>
+                <div class="col-md-4 shop">
+                    <div class="card shadow-lg p-3 mb-5 bg-white" style="border:none;">
                         <div class="text-center">
-                            <a asp-controller="Artworks" asp-action="Desc" class="btn" style="background-color:black;border-radius:100px;width:180px;color:white;font-weight:600;letter-spacing:1px;">Add To Cart</a>
+                            <img class="card-img-top" src="~/images/Artwork/@item.ImageName" asp-append-version="true" />
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-md-center" style="font-weight:bolder;"> @Html.DisplayFor(modelItem => item.ArtworkName)</h5>
+
+                            <p class="card-text text-md-center" style="font-weight:bolder;"> Rs. @Html.DisplayFor(modelItem => item.Price)</p>
+                            <div class="text-center">
+                                <a asp-controller="Artworks" asp-action="Desc" class="btn" style="background-color:black;border-radius:100px;width:180px;color:white;font-weight:600;letter-spacing:1px;">Add To Cart</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        }
-    </div>
+            }
+        </div>
 </div>
 <div>
 
