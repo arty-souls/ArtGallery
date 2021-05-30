@@ -1,0 +1,100 @@
+﻿@model ArtGallery.Models.ShoppingCart
+
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Item Details</h1>
+<hr />
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-12">
+        <img src="@("~/images/Artwork/"+Model.Artwork.ImageName)" asp-append-version="true"  style=" width:30%;height:30%;" />
+    </div>
+    <div class="col-md-8">
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label asp-for="Artwork.ArtworkName" class="text-info font-weight-bold"></label>
+            </div>
+            <div class="col-md-8">
+                <input asp-for="Artwork.ArtworkName" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label asp-for="Artwork.ArtworkDesc" class="text-info font-weight-bold"></label>
+            </div>
+            <div class="col-md-8">
+                <div class="border p-2">
+                    @Html.Raw(Model.Artwork.ArtworkDesc)
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label asp-for="Artwork.Price" class="text-info font-weight-bold"></label>
+            </div>
+            <div class="col-md-8">
+                <input asp-for="Artwork.Price" readonly class="form-control" />
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label asp-for="Artwork.ArtistName" class="text-info font-weight-bold"></label>
+            </div>
+            <div class="col-md-8">
+                <input asp-for="Artwork.ArtistName" readonly class="form-control" />
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label asp-for="Artwork.ArtistIg" class="text-info font-weight-bold"></label>
+            </div>
+            <div class="col-md-8">
+                <input asp-for="Artwork.ArtistIg" readonly class="form-control" />
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label asp-for="Artwork.Reference" class="text-info font-weight-bold"></label>
+            </div>
+            <div class="col-md-8">
+                <input asp-for="Artwork.Reference" readonly class="form-control" />
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label asp-for="Count" class="text-info font-weight-bold"></label>
+            </div>
+            <div class="col-md-8">
+                <input asp-for="Count" class="form-control" />
+                <span asp-validation-for="Count" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <a asp-action="Desc" class="btn btn-success form-control">Back to List</a>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" value="Add to Cart" class="btn btn-primary form-control">Add to Cart</button>
+            </div>
+        </div>
+       
+
+    </div>
+    <input type="hidden" asp-for="ArtworkId" />
+</form>
+ 
+

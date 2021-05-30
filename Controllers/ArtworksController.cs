@@ -202,6 +202,7 @@ namespace ArtGallery.Controllers
             return View(artwork);
         }
 
+        
         // POST: Artworks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -218,6 +219,7 @@ namespace ArtGallery.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        
         public async Task<IActionResult> Desc(string sortOrder,string searchString)
         {
             ViewData["PriceSort"] = sortOrder == "Price" ? "price_desc" : "Price";
@@ -253,5 +255,30 @@ namespace ArtGallery.Controllers
         {
             return _context.Artworks.Any(e => e.ArtworkId == id);
         }
+
+       
+        public async Task<IActionResult> Detail(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+
+            var  artwork = await _context.Artworks.FirstOrDefaultAsync(m => m.ArtworkId == id);
+
+                ShoppingCart cartObj = new ShoppingCart()
+                {
+                   Artwork = artwork,
+                   ArtworkId = artwork.ArtworkId
+               };
+
+                return View(cartObj);
+            }
+        
+
+
+
+
     }
 }
