@@ -218,21 +218,37 @@ namespace ArtGallery.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> Desc(string searchString)
+        public async Task<IActionResult> Desc(string sortOrder,string searchString)
         {
-            var artwork = from a in _context.Artworks
-                         select a;
+            ViewData["PriceSort"] = sortOrder == "Price" ? "price_desc" : "Price";
 
+
+            var artwork = from a in _context.Artworks
+                          select a;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                artwork = artwork.Where(s => s.ArtworkName.Contains(searchString));
+                artwork = artwork.Where(s => s.ArtworkName.Contains(searchString) || s.ArtistName.Contains(searchString));
             }
 
+                switch (sortOrder)
+                {
+                    case "Price":
+                        artwork = artwork.OrderBy(s => s.Price);
+                        break;
+                    case "price_desc":
+                        artwork = artwork.OrderByDescending(s => s.Price);
+                        break;
+                    default:
+                        artwork = artwork.OrderBy(s => s.ArtworkName);
+                        break;
+                }
+            
+
             return View(await artwork.ToListAsync());
-
-
         }
+
+           
         private bool ArtworkExists(int id)
         {
             return _context.Artworks.Any(e => e.ArtworkId == id);

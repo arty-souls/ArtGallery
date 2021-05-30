@@ -13,10 +13,12 @@
     <br />
     <form asp-controller="Artworks" asp-action="Desc" method="get">
         <p>
-            Name: <input type="text" name="SearchString" />
-            <input type="submit" value="Filter" />
+            <a class="btn btn-link"  role="button" style="background-color:black;border-radius:100px;width:90px;color:white;font-weight:600" asp-route-sortOrder="@ViewData["PriceSort"]">Price <i class="fas fa-sort" style="color:white;"></i></a>
         </p>
-        </form>
+
+
+    </form>
+
         <div class="row " style="font-family:Raleway;">
             @foreach (var item in Model)
             {
