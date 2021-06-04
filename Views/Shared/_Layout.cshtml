@@ -44,18 +44,9 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Artworks" asp-action="Desc">Shop</a>
                         </li>
 
-                        <li class="nav-item dropdown" style="padding-right:1%;">
-                            <a class="nav-link text-light dropdown-toggle " id="dropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="Home" asp-action="Artist">
-                                Artists
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-controller="Home" asp-action="">Reka B S</a>
-                                <a class="dropdown-item" asp-controller="Home" asp-action="Artist">Saumya Gupta</a>
-                                <a class="dropdown-item" asp-controller="Home" asp-action="Artist">Nehal Sakaria</a>
-                                <a class="dropdown-item" asp-controller="Artists" asp-action="Desc">All Artists</a>
 
-                            </div>
-
+                        <li class="nav-item" style="padding-right:1%;">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Artists" asp-action="Desc">Artists</a>
                         </li>
 
                         <li class="nav-item dropdown" style="padding-right:1%;">
@@ -75,8 +66,8 @@
                         </li>
 
                         <li class="nav-item">
-                            <form class="form-inline" style="max-width:60%;" asp-controller="Artworks" asp-action="Desc" method="get" >
-                                <input class="form-control rounded-pill border-0" type="text" placeholder="Search" aria-label="Search" style="height:35px;width:160px;" name="SearchString" >
+                            <form class="form-inline" style="max-width:60%;" asp-controller="Artworks" asp-action="Desc" method="get">
+                                <input class="form-control rounded-pill border-0" type="text" placeholder="Search" aria-label="Search" style="height:35px;width:160px;" name="SearchString">
                             </form>
                         </li>
 
