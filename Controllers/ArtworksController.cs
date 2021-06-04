@@ -158,7 +158,7 @@ namespace ArtGallery.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(model.ArtworkPicture.FileName);
                 string extension = Path.GetExtension(model.ArtworkPicture.FileName);
                 model.ImageName = fileName = fileName + extension;
-                string path = Path.Combine(wwwRootPath + "/Images/Artist/", fileName);
+                string path = Path.Combine(wwwRootPath + "/Images/Artwork/", fileName);
 
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
@@ -212,7 +212,7 @@ namespace ArtGallery.Controllers
             var artwork = await _context.Artworks.FindAsync(id);
 
 
-            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/Artist", artwork.ImageName);
+            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/Artwork", artwork.ImageName);
             if (System.IO.File.Exists(imagePath))
                 System.IO.File.Delete(imagePath);
 
@@ -262,32 +262,11 @@ namespace ArtGallery.Controllers
 
 
         //sharaha
-        public async Task<IActionResult> Collections(string sortOrder, string searchString)
+        public async Task<IActionResult> Collections()
         {
-            ViewData["PriceSort"] = sortOrder == "Price" ? "price_desc" : "Price";
-
-
+            
             var artwork = from a in _context.Artworks
-                          select a;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                artwork = artwork.Where(s => s.ArtworkName.Contains(searchString) || s.ArtistName.Contains(searchString));
-            }
-
-            switch (sortOrder)
-            {
-                case "Price":
-                    artwork = artwork.OrderBy(s => s.Price);
-                    break;
-                case "price_desc":
-                    artwork = artwork.OrderByDescending(s => s.Price);
-                    break;
-                default:
-                    artwork = artwork.OrderBy(s => s.ArtworkName);
-                    break;
-            }
-
+                          select a;      
 
             return View(await artwork.ToListAsync());
         }
@@ -315,7 +294,17 @@ namespace ArtGallery.Controllers
             return View(items.ToList());
         }
 
-
+        public IActionResult Blue()
+        {
+            string searching = "Blue";
+            var items = from s in _context.Artworks
+                        select s;
+            if (!String.IsNullOrEmpty(searching))
+            {
+                items = items.Where(s => s.Collection.Contains(searching));
+            }
+            return View(items.ToList());
+        }
 
     }
 }

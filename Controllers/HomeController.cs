@@ -34,16 +34,8 @@ namespace ArtGallery.Controllers
         {
             return View();
         }
-        public IActionResult Artist()
-        {
-            return View();
-        }
-
-        public IActionResult Collection()
-        {
-            return View();
-        }
-
+  
+    
        
         public IActionResult SignIn()
         {

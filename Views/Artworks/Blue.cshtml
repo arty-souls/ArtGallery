@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ArtGallery.Models.Artwork>
+    @{
+        ViewData["Title"] = "Blue";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+        <div class="container">
+
+            <br>
+            <br>
+            <h4 class="text-md-center" style="color:black;font-family:'Playfair Display';font-weight:600;font-size:40px">Blue</h4>
+            <hr style="height:2px;background-color:black;border-radius:100px;margin-top:0.5vw;">
+            <br />
+
+
+            <div class="row text-center " style="font-family: Raleway;">
+                @foreach (var item in Model)
+                {
+
+                    <div class="col-md-4 ">
+                        <div class=" p-3 mb-5 ">
+                            <div>
+                                <img class="card-img-top " src="~/images/Artwork/@item.ImageName" asp-append-version="true" />
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+        <div>
+
+
+        </div>
