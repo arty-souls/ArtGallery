@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using ArtGallery.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ArtGallery.Controllers
 {
+   
     public class ArtworksController : Controller
     {
         private readonly ArtworkContext _context;
@@ -218,6 +220,8 @@ namespace ArtGallery.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
         public async Task<IActionResult> Desc(string sortOrder,string searchString)
         {
             ViewData["PriceSort"] = sortOrder == "Price" ? "price_desc" : "Price";
@@ -253,5 +257,65 @@ namespace ArtGallery.Controllers
         {
             return _context.Artworks.Any(e => e.ArtworkId == id);
         }
+
+
+
+
+        //sharaha
+        public async Task<IActionResult> Collections(string sortOrder, string searchString)
+        {
+            ViewData["PriceSort"] = sortOrder == "Price" ? "price_desc" : "Price";
+
+
+            var artwork = from a in _context.Artworks
+                          select a;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                artwork = artwork.Where(s => s.ArtworkName.Contains(searchString) || s.ArtistName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "Price":
+                    artwork = artwork.OrderBy(s => s.Price);
+                    break;
+                case "price_desc":
+                    artwork = artwork.OrderByDescending(s => s.Price);
+                    break;
+                default:
+                    artwork = artwork.OrderBy(s => s.ArtworkName);
+                    break;
+            }
+
+
+            return View(await artwork.ToListAsync());
+        }
+        public IActionResult Zodiac()
+        {
+            string searching = "Zodiac";
+            var items = from s in _context.Artworks
+                        select s;
+            if (!String.IsNullOrEmpty(searching))
+            {
+                items = items.Where(s => s.Collection.Contains(searching));
+            }
+            return View(items.ToList());
+        }
+
+        public IActionResult Party()
+        {
+            string searching = "Party";
+            var items = from s in _context.Artworks
+                        select s;
+            if (!String.IsNullOrEmpty(searching))
+            {
+                items = items.Where(s => s.Collection.Contains(searching));
+            }
+            return View(items.ToList());
+        }
+
+
+
     }
 }

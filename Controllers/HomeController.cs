@@ -1,5 +1,6 @@
 ﻿using ArtGallery.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace ArtGallery.Controllers
             return View();
         }
 
+
         public IActionResult Shop()
         {
             return View();
@@ -42,6 +44,7 @@ namespace ArtGallery.Controllers
             return View();
         }
 
+       
         public IActionResult SignIn()
         {
             return View();
