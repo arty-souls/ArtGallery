@@ -227,6 +227,8 @@ namespace ArtGallery.Controllers
         {
             return _context.Artist.Any(e => e.ArtistId == id);
         }
+
+        
     }
 }
 
