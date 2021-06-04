@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArtGallery.Areas.Identity.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,7 +22,7 @@ namespace ArtGallery.Models
 
         [NotMapped]
         [ForeignKey("UserId")]
-        public virtual Areas.Identity.Data.ArtGalleryUser ArtGalleryUser   { get; set; }
+        public virtual ArtGalleryUser ArtGalleryUser   { get; set; }
 
         public int ArtworkId { get; set; }
 

@@ -34,11 +34,9 @@
                             <p class="card-text text-md-center" style="font-weight:bolder;"> Rs. @Html.DisplayFor(modelItem => item.Price)</p>
                             <div class="text-center">
                                 <div class="col-md-4">
-                                    <a asp-controller="Artworks" asp-action="Detail" asp-route-id="@item.ArtworkId" class="btn" style="background-color:black;border-radius:100px;width:180px;color:white;font-weight:600;letter-spacing:1px;">Details</a>
+                                    <a asp-controller="Artworks" asp-action="Detail" asp-route-id="@item.ArtworkId" class="btn text-md-center" style="background-color:black;border-radius:100px;width:180px;color:white;font-weight:600;letter-spacing:1px;">Details</a>
                                 </div>
-                                <div class="col-md-4">
-                                    <a asp-controller="Artworks" asp-action="Desc" class="btn" style="background-color:black;border-radius:100px;width:180px;color:white;font-weight:600;letter-spacing:1px;">Add To Cart</a>
-                                </div>
+                               
                                 
                                 </div>
                             </div>
