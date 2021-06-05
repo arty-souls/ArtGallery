@@ -335,13 +335,6 @@ namespace ArtGallery.Controllers
 
 
 
-
-
-        }
-
-
-
-
         //sharaha
         public async Task<IActionResult> Collections()
         {
