@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using ArtGallery.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 
 namespace ArtGallery.Controllers
@@ -16,11 +18,18 @@ namespace ArtGallery.Controllers
     public class ArtworksController : Controller
     {
         private readonly ArtworkContext _context;
+        private readonly ShoppingCartContext _c;
+
+
+
         private IWebHostEnvironment _hostEnvironment;
-        public ArtworksController(ArtworkContext context, IWebHostEnvironment hostEnvironment)
+        public ArtworksController(ArtworkContext context, IWebHostEnvironment hostEnvironment,ShoppingCartContext co)
         {
             _context = context;
+            _c = co;
+          
             this._hostEnvironment = hostEnvironment;
+         
         }
 
         // GET: Artworks
@@ -60,8 +69,10 @@ namespace ArtGallery.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ArtworkId,ArtworkName,ArtworkDesc,ArtistName,ArtistIg,Reference,Collection,Price,ArtworkPicture")] Artwork artwork)
         {
+          
             if (ModelState.IsValid)
             {
+
 
                 string wwwRootPath = _hostEnvironment.WebRootPath;
                 string fileName = Path.GetFileNameWithoutExtension(artwork.ArtworkPicture.FileName);
@@ -204,6 +215,7 @@ namespace ArtGallery.Controllers
             return View(artwork);
         }
 
+        
         // POST: Artworks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -220,8 +232,7 @@ namespace ArtGallery.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
-
+        
         public async Task<IActionResult> Desc(string sortOrder,string searchString)
         {
             ViewData["PriceSort"] = sortOrder == "Price" ? "price_desc" : "Price";
@@ -256,6 +267,76 @@ namespace ArtGallery.Controllers
         private bool ArtworkExists(int id)
         {
             return _context.Artworks.Any(e => e.ArtworkId == id);
+        }
+
+       
+        public async Task<IActionResult> Detail(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+
+            var  artwork = await _context.Artworks.FirstOrDefaultAsync(m => m.ArtworkId == id);
+
+         
+
+            ShoppingCart cartObj = new ShoppingCart()
+                {
+                   Artwork = artwork,
+                   ArtworkId = artwork.ArtworkId,
+             //   UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value
+        };
+            
+
+            return View(cartObj);
+        }
+
+     
+
+       
+
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Detail(ShoppingCart CartObject)
+        {
+            CartObject.Id = 0;
+
+                //  var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+                //   var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                //   CartObject.UserId = claim.Value;
+
+                CartObject.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                ShoppingCart cartFromDb= await _c.ShopingCart.Where(c => c.UserId == CartObject.UserId
+                                                && c.ArtworkId == CartObject.ArtworkId).FirstOrDefaultAsync();
+
+                if (cartFromDb == null)
+                {
+                    await _c.ShopingCart.AddAsync(CartObject);
+                }
+                else
+                {
+                    cartFromDb.Count = cartFromDb.Count + CartObject.Count;
+                }
+                await _c.SaveChangesAsync();
+
+               var count = _c.ShopingCart.Where(c => c.UserId == CartObject.UserId).ToList().Count();
+                HttpContext.Session.SetInt32("ssCartCount", count);
+
+                return RedirectToAction("Desc");
+
+            
+          
+        }
+
+
+
+
+
         }
 
 

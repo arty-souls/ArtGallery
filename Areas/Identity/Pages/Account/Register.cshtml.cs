@@ -57,9 +57,35 @@ namespace ArtGallery.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Street Address")]
+            public string StreetAddress { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "City")]
+            public string City { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "State")]
+            public string State { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Postal Code")]
+            public string PostalCode { get; set; }
+
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Phone Number")]
+            public string PhoneNumber { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -71,6 +97,8 @@ namespace ArtGallery.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -87,7 +115,13 @@ namespace ArtGallery.Areas.Identity.Pages.Account
             {
                 var user = new ArtGalleryUser { UserName = Input.Email, Email = Input.Email,
                     FirstName = Input.FirstName,
-                    LastName = Input.LastName
+                    LastName = Input.LastName,
+                    StreetAddress=Input.StreetAddress,
+                    City=Input.City,
+                    State=Input.State,
+                    PostalCode=Input.PostalCode,
+                    PhoneNumber = Input.PhoneNumber
+
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

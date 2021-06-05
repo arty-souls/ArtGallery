@@ -27,9 +27,17 @@ namespace ArtGallery
             services.AddDbContext<Models.UserContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Myconnection")));
             services.AddDbContext<Models.ArtistContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Myconnection")));
             services.AddDbContext<Models.ArtworkContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Myconnection")));
+            services.AddDbContext<Models.ShoppingCartContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Myconnection")));
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddSession(
+                options => {
+                    options.Cookie.IsEssential = true;
+                    options.IdleTimeout = TimeSpan.FromMinutes(30);
+                    options.Cookie.HttpOnly = true;
+                    }
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +54,7 @@ namespace ArtGallery
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthentication();
             app.UseAuthorization();
