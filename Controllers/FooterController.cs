@@ -27,5 +27,22 @@ namespace ArtGallery.Controllers
         {
             return View();
         }
+
+        public IActionResult RefundPolicy()
+        {
+            return View();
+        }
+
+        public IActionResult PrivacyPolicy()
+        {
+            return View();
+        }
+
+        public IActionResult TermsAndConditions() 
+        {
+            return View();
+        }
+
+
     }
 }
