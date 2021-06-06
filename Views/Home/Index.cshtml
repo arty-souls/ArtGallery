@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -15,7 +15,7 @@
         <div class="carousel-item active">
             <a asp-area="" asp-controller="Home" asp-action="Gallery">
                 <img class="d-block w-100" src="~/Images/Slider/First.png" alt="First slide">
-            </a>          
+            </a>
         </div>
         <!------slide 2-->
         <div class="carousel-item">
@@ -38,4 +38,27 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
+</div>
+<br />
+<br />
+<h4 class="text-md-center" style="color:black;font-family:'Playfair Display';font-weight:600;font-size:40px">Our Latest Collections</h4>
+<hr style="height:2px;background-color:black;border-radius:100px;margin-top:0.5vw;">
+<br />
+<div class="container-fluid " >
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-4 ">
+            <div class="  mb-5">
+            <a  asp-area="" asp-controller="Artworks" asp-action="Zodiac">
+                    <img class="card-img-top" src="~/images/Artwork/Group 7.png" asp-append-version="true" />
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 ">
+            <div class="  mb-5">
+                <a  asp-area="" asp-controller="Artworks" asp-action="Party">
+                    <img class="card-img-top" src="~/images/Artwork/Group 6.png" asp-append-version="true" />
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
