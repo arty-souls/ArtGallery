@@ -7,7 +7,7 @@
 }
 <style>
     .login {
-        background-color: black;
+        background-color:black;
     }
 
     /*for tab control*/
@@ -45,40 +45,43 @@
         </div>
         <form id="account" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fas fa-envelope"></i>
+              <div class="form-group">
+                    <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                            </div>
+                             <input asp-for="Input.Email" class="form-control" placeholder="Email Address" />
                         </div>
-                    </div>
-                    <input asp-for="Input.Email" class="form-control" placeholder="Email Address" />
-                </div>
+                   
+              
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fas fa-lock"></i>
+                </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                            </div>
+                            <input asp-for="Input.Password" class="form-control" placeholder="Password" />
                         </div>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
-                    <input asp-for="Input.Password" class="form-control" placeholder="Password" />
+               
+             <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe" style="color:white">
+                            <input asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
                 </div>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label asp-for="Input.RememberMe" style="color:white">
-                        <input asp-for="Input.RememberMe" />
-                        @Html.DisplayNameFor(m => m.Input.RememberMe)
-                    </label>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Log in</button>
                 </div>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block">Log in</button>
-            </div>
-            <br />
+                <br />
         </form>
     </div>
 </div>
